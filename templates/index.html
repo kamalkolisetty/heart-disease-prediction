@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Heart Disease Prediction</h1>
+        <form action="/predict" method="post">
+            <!-- Form fields with Bootstrap styling -->
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="text" class="form-control" id="age" name="age" value="{{ age }}" required>
+            </div>
+            <div class="form-group">
+                <label for="sex">Sex (0 = Female, 1 = Male):</label>
+                <input type="text" class="form-control" id="sex" name="sex" value="{{ sex }}" required>
+            </div>
+            <div class="form-group">
+                <label for="cp">Chest Pain Type (0-3):</label>
+                <input type="text" class="form-control" id="cp" name="cp" value="{{ cp }}" required>
+            </div>
+            <div class="form-group">
+                <label for="trestbps">Resting Blood Pressure:</label>
+                <input type="text" class="form-control" id="trestbps" name="trestbps" value="{{ trestbps }}" required>
+            </div>
+            <div class="form-group">
+                <label for="chol">Cholesterol:</label>
+                <input type="text" class="form-control" id="chol" name="chol" value="{{ chol }}" required>
+            </div>
+            <div class="form-group">
+                <label for="fbs">Fasting Blood Sugar (0 = False, 1 = True):</label>
+                <input type="text" class="form-control" id="fbs" name="fbs" value="{{ fbs }}" required>
+            </div>
+            <div class="form-group">
+                <label for="restecg">Resting Electrocardiographic Results (0-2):</label>
+                <input type="text" class="form-control" id="restecg" name="restecg" value="{{ restecg }}" required>
+            </div>
+            <div class="form-group">
+                <label for="thalach">Maximum Heart Rate Achieved:</label>
+                <input type="text" class="form-control" id="thalach" name="thalach" value="{{ thalach }}" required>
+            </div>
+            <div class="form-group">
+                <label for="exang">Exercise Induced Angina (0 = No, 1 = Yes):</label>
+                <input type="text" class="form-control" id="exang" name="exang" value="{{ exang }}" required>
+            </div>
+            <div class="form-group">
+                <label for="oldpeak">Depression Induced by Exercise Relative to Rest:</label>
+                <input type="text" class="form-control" id="oldpeak" name="oldpeak" value="{{ oldpeak }}" required>
+            </div>
+            <div class="form-group">
+                <label for="slope">Slope of the Peak Exercise ST Segment (0-2):</label>
+                <input type="text" class="form-control" id="slope" name="slope" value="{{ slope }}" required>
+            </div>
+            <div class="form-group">
+                <label for="ca">Number of Major Vessels Colored by Fluoroscopy (0-4):</label>
+                <input type="text" class="form-control" id="ca" name="ca" value="{{ ca }}" required>
+            </div>
+            <div class="form-group">
+                <label for="thal">Thalassemia (0-3):</label>
+                <input type="text" class="form-control" id="thal" name="thal" value="{{ thal }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Predict</button>
+        </form>
+
+        <!-- Display the submitted data and prediction result -->
+        {% if prediction_text %}
+            <h2 class="mt-4 {{ 'text-success' if 'No Heart Disease Detected' in prediction_text else 'text-danger' }}">{{ prediction_text }}</h2>
+        {% endif %}
+
+        {% if prediction_text == "Heart Disease Detected!" %}
+            <div class="mt-4 alert alert-danger">
+                <strong>Alert:</strong> It's advisable to consult a doctor. <a href="https://tmckolkata.com/in/" target="_blank">Click here to meet a doctor</a>.
+            </div>
+        {% elif prediction_text == "No Heart Disease Detected!" %}
+            <div class="mt-4 alert alert-success">
+                <strong>Great!</strong> Here are some tips to maintain heart health:
+                <ul>
+                    <li>Maintain a healthy diet rich in fruits and vegetables.</li>
+                    <li>Engage in regular physical activity.</li>
+                    <li>Avoid smoking and limit alcohol consumption.</li>
+                    <li>Manage stress through relaxation techniques.</li>
+                </ul>
+            </div>
+        {% endif %}
+
+        <!-- Display submitted data -->
+        {% if age and sex and cp and trestbps and chol and fbs and restecg and thalach and exang and oldpeak and slope and ca and thal %}
+            <h3 class="mt-4">Submitted Data:</h3>
+            <ul>
+                <li><strong>Age:</strong> {{ age }}</li>
+                <li><strong>Sex:</strong> {{ sex }}</li>
+                <li><strong>Chest Pain Type:</strong> {{ cp }}</li>
+                <li><strong>Resting Blood Pressure:</strong> {{ trestbps }}</li>
+                <li><strong>Cholesterol:</strong> {{ chol }}</li>
+                <li><strong>Fasting Blood Sugar:</strong> {{ fbs }}</li>
+                <li><strong>Resting Electrocardiographic Results:</strong> {{ restecg }}</li>
+                <li><strong>Maximum Heart Rate Achieved:</strong> {{ thalach }}</li>
+                <li><strong>Exercise Induced Angina:</strong> {{ exang }}</li>
+                <li><strong>Depression Induced by Exercise Relative to Rest:</strong> {{ oldpeak }}</li>
+                <li><strong>Slope of the Peak Exercise ST Segment:</strong> {{ slope }}</li>
+                <li><strong>Number of Major Vessels Colored by Fluoroscopy:</strong> {{ ca }}</li>
+                <li><strong>Thalassemia:</strong> {{ thal }}</li>
+            </ul>
+        {% endif %}
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
