@@ -109,7 +109,7 @@ This will output the trained model and scaler, which will be used in `app.py` to
 
 ## Web Application
 
-The web application is built using Flask, providing an interface where users can input patient data to predict the likelihood of heart disease. The application loads the pre-trained model and scaler to process the input and display the prediction.
+The web application is built using Flask,and styled with Bootstrap to ensure responsiveness across different devices, providing a user-friendly interface  where users can input patient data to predict the likelihood of heart disease. The application loads the pre-trained model and scaler to process the input and display the prediction.
 
 ### Routes
 
