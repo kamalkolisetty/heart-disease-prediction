@@ -138,7 +138,6 @@ The Random Forest classifier provided the highest accuracy at 89%, making it the
 
 
 
-This combined README file includes all the relevant details about the project, from the overall structure and purpose to the specific scripts and their functionalities.
 ## Working of model
 
 ![](1h.png)
